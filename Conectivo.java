@@ -1,6 +1,6 @@
 abstract class Conectivo extends Formula {
-	private String sinal;
-	private Formula esquerdo, direito;
+	protected String sinal;
+	protected Formula esquerdo, direito;
 
 	Conectivo (Formula esq, String sinal) {
 		this.esquerdo = esq;
@@ -24,6 +24,11 @@ abstract class Conectivo extends Formula {
 		else {
 			direito = a;
 		}
+	}
+
+	void add(Formula a, Formula b) {
+		esquerdo = a;
+		direito = b;
 	}
 
 	void remove(Formula a) {
@@ -51,9 +56,11 @@ abstract class Conectivo extends Formula {
 		}
 	}
 
+	String obterExpressao() {
+		return esquerdo+sinal+direito;
+	}
+
 	public String toString() {
-		if (direito != null) return esquerdo+sinal+direito;
-		
-		return "("+esquerdo+")"+sinal;
+		return esquerdo+sinal+direito;
 	}
 }

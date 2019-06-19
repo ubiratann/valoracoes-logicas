@@ -3,9 +3,14 @@ public class Atomica extends Formula implements Binario {
 	private boolean valor;
 	private int bitPos, cont;
 
-	Atomica (String nome, boolean valor) {
-		this.valor = valor;
+	Atomica (String nome) {
 		this.nome = nome;
+		this.valor = false;
+	}
+
+	Atomica (String nome, Boolean bool) {
+		this.nome = nome;
+		this.valor = bool;
 	}
 
 	boolean obterValor() {
