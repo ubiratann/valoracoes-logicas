@@ -2,6 +2,11 @@ public class Pilha {
 	Formula[] pilha = new Formula[3];
 	int topo = -1;
 
+	int size() {
+		if ( empty() ) return 0;
+		return topo+1;
+	}
+
 	boolean empty() {
 		if ( topo == -1 ) return true;
 		return false;
@@ -38,31 +43,67 @@ public class Pilha {
 		return x;
 	}
 
+	void top() {
+		if (empty()) System.out.println("Error: stack empty");
+
+		System.out.println(pilha[topo]);
+	}
+
 	void reduceStackUnary() {
 		Conectivo conecUn = (Conectivo)pop();
-		
-		conecUn.add( (Atomica)pop() );
-		
+
+		if (isAtomica())
+			conecUn.add( (Atomica)pop() );
+		else
+			conecUn.add( (Conectivo)pop() );
+
 		push(conecUn);
 	}
 	
 	void reduceStackBinary() {
-		Atomica atDir = (Atomica)pop();
+		Atomica atTop = null, atLow = null;
+		Conectivo conecTop = null, conecCenter = null, conecLow = null;
 
-		Conectivo conecBin = (Conectivo)pop();
+		if (isAtomica())
+			atTop = (Atomica)pop();
+		else
+			conecTop = (Conectivo)pop();
+
+		conecCenter = (Conectivo)pop();
+
+		if (isAtomica())	
+			atLow = (Atomica)pop();
+		else
+			conecLow = (Conectivo)pop();
 		
-		conecBin.add( pop(), atDir );
-
-		push(conecBin);
+		if (atLow != null) 
+			conecCenter.add(atLow);
+		else
+			conecCenter.add(conecLow);
+		
+		if (atTop != null) 
+			conecCenter.add(atTop);
+		else
+			conecCenter.add(conecTop);
+		
+		push(conecCenter);
 	}
 
 	boolean readyUnary() {
-		if ( pilha[topo] instanceof Negacao ) return true;
+		if ( pilha[topo] instanceof Negacao && size() == 2 ) return true;
 		return false;
 	}
 	
 	boolean readyBinary() {
-		if ( pilha[topo] instanceof Atomica && flow() ) return true;
+		if (flow()) return true;
+		return false;
+	}
+
+	boolean isAtomica() {
+		if (empty()) System.out.println("Error: stack empty");
+
+		if ( pilha[topo] instanceof Atomica ) return true;
+
 		return false;
 	}
 }

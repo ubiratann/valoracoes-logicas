@@ -18,12 +18,10 @@ abstract class Conectivo extends Formula {
 
 	// segue a ideia de adicionar à direita do sinal
 	void add(Formula a) {
-		if (esquerdo == null) {
+		if (esquerdo == null)
 			esquerdo = a;
-		} 
-		else {
+		else 
 			direito = a;
-		}
 	}
 
 	void add(Formula a, Formula b) {
