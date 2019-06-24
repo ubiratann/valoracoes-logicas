@@ -1,6 +1,6 @@
 class Conjuncao extends Conectivo {
 	Conjuncao (Formula esq, String sinal, Formula dir) {
-		super(esq, sinal, dir);
+		 super(esq, sinal, dir);
 	}
 
 	boolean obterValor() {

@@ -6,13 +6,4 @@ class Negacao extends Conectivo {
 	boolean obterValor() {
 		return !obterFilho(0).obterValor(); 
 	}
-
-	@Override
-	String obterExpressao() {
-		return "("+esquerdo+")"+sinal;
-	}
-	
-	public String toString() {
-		return "("+esquerdo+")"+sinal;
-	}
 }

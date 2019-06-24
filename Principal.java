@@ -1,26 +1,23 @@
-import java.util.*;
+/*import java.util.*;
 
 public class Principal {
 	public static void main(String[] args) {
-		String phi = new String("((d.e)+(c)')'");
+		Atomica a = new Atomica("a", false);
+		Atomica b = new Atomica("b", false);
+		Atomica c = new Atomica("c", false);
+		Atomica d = new Atomica("d", false);
+		Atomica e = new Atomica("e", false);
 
-		Leitor l = new Leitor(phi);
+		Conjuncao eLog = new Conjuncao(d, ".",e);
+		Disjuncao ou = new Disjuncao(eLog, "+", c);
+		Conjuncao eLog2 = new Conjuncao(ou, ".", b);
+		Negacao aNegado = new Negacao(a,"'");
 
-		// String[] teta = phi.split("");
+		Atomica[] atomicas = {a};
+
+		Tabela tb = new Tabela(aNegado, atomicas);
 		
-		// Conectivo r = (Conectivo)l.lerFormula();
-
-		// int a = -1;
-		// Atomica[] at = l.obterAtomicas();
-
-		// for (Atomica c : at) System.out.println(c+" "+(++a));
-
-		// System.out.println();
-
-		Tabela tb2 = new Tabela(( Conectivo)l.lerFormula() , l.obterAtomicas(), l.stringFormula());
-		
-		System.out.println();
-		tb2.gerarTabela();
+		tb.gerarTabela();
 
 	}
-}
+}*/
